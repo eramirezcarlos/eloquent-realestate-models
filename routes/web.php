@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Role;
 use App\User;
 use App\Comment;
+use App\Language;
+use App\PropertyPurposeTranslation;
+use App\PropertyPurpose;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,7 +134,7 @@ Route::get('/softdelete',function(){
 
 //retrieving from details tables
 //users of the role from parent to show details
-Route::get('/role/{id}/user',function($id){
+Route::get('/role/{id}/users',function($id){
 
     $users =  Role::find($id)->user;
 
@@ -157,10 +160,22 @@ Route::get('/comment/{id}/user',function($id){
 
 });
 
-Route::get('/user/{id}/comment',function($id){
+Route::get('/user/{id}/comments',function($id){
 
     $comments = User::find($id)->comment;
 
     print_r( $comments );
 
 });
+//many to may relationships
+Route::get('/language/{id}/purposes',function($id){
+
+    echo "lenguaje es " . $id;
+
+    $translation = PropertyPurpose::find($id)->propertyPurposeLanguage();
+
+
+
+
+});
+
